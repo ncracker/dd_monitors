@@ -1,0 +1,22 @@
+{
+	"name": "HAProxy",
+	"type": "service check",
+	"query": "\"haproxy.backend_up\".over(\"*\").by(\"backend\",\"service\").last(2).count_by_status()",
+	"message": "Service or backend down",
+	"tags": [],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"silenced": {},
+		"new_host_delay": 300,
+		"notify_no_data": false,
+		"renotify_interval": 0,
+		"no_data_timeframe": 2,
+		"thresholds": {
+			"critical": 1,
+			"warning": 1,
+			"ok": 1
+		}
+	}
+}

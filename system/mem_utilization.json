@@ -2,7 +2,7 @@
 	"name": "{{host.name}} consuming more than 90% of system memory",
 	"type": "metric alert",
 	"query": "avg(last_15m):avg:system.mem.pct_usable{*} by {host} < 0.1",
-	"message": "{{host.name}} - {{host.ip}} sustained memory usage is over 90% for the last 15 mins\nPlease use the [system dashboard](https://app.datadoghq.com/screen/487253/system-dashboard--azure) to investigate",
+	"message": "{{host.name}} - {{host.ip}} sustained memory usage is over 90% for the last 15 mins\nPlease use the [system dashboard](https://app.datadoghq.com/dash/integration/1/System%20-%20Metrics?tpl_var_scope=host%3A{{host.name}}) to investigate",
 	"tags": [],
 	"options": {
 		"notify_audit": false,
