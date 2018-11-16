@@ -1,0 +1,24 @@
+{
+	"name": "Disk utilization high on {{device.name}} on {{host.name}}",
+	"type": "metric alert",
+	"query": "avg(last_5m):avg:system.disk.in_use{!device:/dev/loop0,!device:/dev/loop1} by {device,host} > 0.92",
+	"message": "{{value}}% of space used on {{device.name}}\nPlease log in to {{host.name}} [{{host.ip}}] and investigate disk usage for mount point {{device.name}}",
+	"tags": [],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": false,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": null,
+		"include_tags": false,
+		"synthetics_check_id": null,
+		"thresholds": {
+			"critical": 0.92,
+			"warning": 0.85
+		}
+	}
+}

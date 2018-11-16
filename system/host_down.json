@@ -1,0 +1,17 @@
+{
+	"name": "{{host.name}} hasn't reported in 2 mins",
+	"type": "service check",
+	"query": "\"datadog.agent.up\".over(\"*\").last(1).count_by_status()",
+	"message": "Datadog agent has stopped reporting.\nInstance either down or unresponsive.\n\nPlease investigate or check events stream",
+	"tags": [],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"silenced": {},
+		"new_host_delay": 300,
+		"notify_no_data": true,
+		"renotify_interval": 0,
+		"no_data_timeframe": 2
+	}
+}
