@@ -1,0 +1,22 @@
+{
+	"name": "Service {{service.name}} in low availability state",
+	"type": "service check",
+	"query": "\"haproxy.backend_up\".over(\"service:static_farm\").by(\"service\").last(1).pct_by_status()",
+	"message": "{{service.name}} availability is below {{threshold}}%\nPlease investigate",
+	"tags": [],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"silenced": {},
+		"include_tags": true,
+		"thresholds": {
+			"critical": 75,
+			"ok": 25
+		},
+		"new_host_delay": 300,
+		"notify_no_data": false,
+		"renotify_interval": 0,
+		"no_data_timeframe": 2
+	}
+}
