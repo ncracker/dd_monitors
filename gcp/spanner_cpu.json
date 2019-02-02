@@ -1,8 +1,8 @@
 {
-	"name": "Spanner: CPU usage",
+	"name": "Spanner High CPU usage",
 	"type": "query alert",
 	"query": "avg(last_5m):max:gcp.spanner.instance.cpu.utilization{*} by {database} > 0.75",
-	"message": "{{#is_alert}} To fix this add more nodes to the spanner cluster {{/is_alert}}\n\n{{#is_recovery}} Spanner cpu is looking good {{/is_recovery}} ",
+	"message": "{{#is_alert}} Consider adding additional nodes to spanner cluster {{/is_alert}}\n\n{{#is_recovery}} Spanner cpu is back to normal {{/is_recovery}} ",
 	"tags": [
 		"spanner",
 		"devops"
