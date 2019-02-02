@@ -3,10 +3,7 @@
 	"type": "query alert",
 	"query": "avg(last_5m):avg:gcp.spanner.instance.session_count{*} by {database} > 13000",
 	"message": "{{#is_alert}}Session count is high on database {{database.name}} {{/is_alert}}\n\n{{#is_alert_recovery}} Session count is back to normal {{/is_alert_recovery}} ",
-	"tags": [
-		"spanner",
-		"devops"
-	],
+	"tags": [],
 	"options": {
 		"notify_audit": false,
 		"locked": false,
