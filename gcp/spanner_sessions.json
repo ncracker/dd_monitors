@@ -1,0 +1,27 @@
+{
+	"name": "High Spanner Sessions count",
+	"type": "query alert",
+	"query": "avg(last_5m):avg:gcp.spanner.instance.session_count{*} by {database} > 13000",
+	"message": "{{#is_alert}}Session count is high on database {{database.name}} {{/is_alert}}\n\n{{#is_alert_recovery}} Session count is back to normal {{/is_alert_recovery}} ",
+	"tags": [
+		"spanner",
+		"devops"
+	],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": false,
+		"renotify_interval": "0",
+		"evaluation_delay": 900,
+		"escalation_message": "",
+		"no_data_timeframe": null,
+		"include_tags": false,
+		"thresholds": {
+			"critical": 13000,
+			"critical_recovery": 12000
+		}
+	}
+}
