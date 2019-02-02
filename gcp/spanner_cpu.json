@@ -1,0 +1,27 @@
+{
+	"name": "Spanner: CPU usage",
+	"type": "query alert",
+	"query": "avg(last_5m):max:gcp.spanner.instance.cpu.utilization{*} by {database} > 0.75",
+	"message": "{{#is_alert}} To fix this add more nodes to the spanner cluster {{/is_alert}}\n\n{{#is_recovery}} Spanner cpu is looking good {{/is_recovery}} ",
+	"tags": [
+		"spanner",
+		"devops"
+	],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"silenced": {},
+		"include_tags": false,
+		"no_data_timeframe": null,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": false,
+		"renotify_interval": 0,
+		"escalation_message": "",
+		"thresholds": {
+			"critical": 0.75,
+			"critical_recovery": 0.65
+		}
+	}
+}
