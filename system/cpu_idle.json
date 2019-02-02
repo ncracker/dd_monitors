@@ -1,0 +1,22 @@
+{
+	"name": "High CPU on {{host.name}}",
+	"type": "metric alert",
+	"query": "avg(last_15m):avg:system.cpu.idle{*} by {host} < 50",
+	"message": "CPU Idle is low.\nPlease investigate either by logging in to {{host.name}} ({{host.ip}}) OR via [live processes](https://app.datadoghq.com/process?columns=host,process,user,cpu,memory,start&options=normalizeCPU,showArguments&sort=memory,DESC&tags=host%3A{{host.name}})",
+	"tags": [],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": false,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": null,
+		"include_tags": false,
+		"thresholds": {
+			"critical": 50
+		}
+	}
+}
