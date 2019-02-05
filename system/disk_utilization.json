@@ -1,7 +1,7 @@
 {
-	"name": "Disk utilization high on {{device.name}} on {{host.name}}",
+	"name": "Disk utilization high on {{device.name}} on {{host.name}} - DD Example",
 	"type": "metric alert",
-	"query": "avg(last_5m):avg:system.disk.in_use{!device:/dev/loop0,!device:/dev/loop1} by {device,host} > 0.92",
+	"query": "avg(last_5m):avg:system.disk.in_use{!device:tmpfs,!device:devtmpfs} by {host,device} * 100 > 90",
 	"message": "{{value}}% of space used on {{device.name}}\nPlease log in to {{host.name}} [{{host.ip}}] and investigate disk usage for mount point {{device.name}}",
 	"tags": [],
 	"options": {
@@ -14,11 +14,10 @@
 		"renotify_interval": "0",
 		"escalation_message": "",
 		"no_data_timeframe": null,
-		"include_tags": false,
-		"synthetics_check_id": null,
+		"include_tags": true,
 		"thresholds": {
-			"critical": 0.92,
-			"warning": 0.85
+			"critical": 90,
+			"warning": 85
 		}
 	}
 }
