@@ -1,0 +1,27 @@
+{
+	"name": "An anomaly has been detected for HTTP Response time for {{url.name}}",
+	"type": "query alert",
+	"query": "avg(last_4h):anomalies(avg:network.http.response_time{*} by {url}, 'robust', 2, direction='above', alert_window='last_10m', interval=20, count_default_zero='true', seasonality='daily') >= 0.25",
+	"message": "\nHTTP Response time has increased to {{value}} {{url.name}} ",
+	"tags": [],
+	"options": {
+		"timeout_h": 0,
+		"notify_no_data": false,
+		"no_data_timeframe": null,
+		"notify_audit": false,
+		"require_full_window": true,
+		"new_host_delay": 300,
+		"include_tags": false,
+		"escalation_message": "",
+		"locked": false,
+		"renotify_interval": "0",
+		"thresholds": {
+			"critical": 0.25,
+			"critical_recovery": 0
+		},
+		"threshold_windows": {
+			"trigger_window": "last_10m",
+			"recovery_window": "last_15m"
+		}
+	}
+}
