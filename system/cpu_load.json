@@ -2,7 +2,7 @@
 	"name": "System CPU load is high on {{host.name}}",
 	"type": "metric alert",
 	"query": "avg(last_15m):avg:system.cpu.idle{*} by {host} < 20",
-	"message": "Sustained CPU usage over last 15mins on {{host.name}} \n\nLog in to {{host.name}} - {{host.ip}} to investigate of use [Live Process view](https://partlow.datadoghq.com/process)",
+	"message": "Sustained CPU usage over last 15mins on {{host.name}} \n\nLog in to {{host.name}} - {{host.ip}} to investigate of use [Live Process view](https://app.datadoghq.com/process?tags=host%3A{{host.name}}&selectedTopGraph=none)",
 	"tags": [],
 	"options": {
 		"notify_audit": false,
