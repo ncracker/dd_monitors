@@ -1,5 +1,5 @@
 {
-	"name": "High CPU on {{host.name}}",
+	"name": "High CPU on {{host.name}} - DD Example",
 	"type": "metric alert",
 	"query": "avg(last_15m):avg:system.cpu.idle{*} by {host} < 50",
 	"message": "CPU Idle is low.\nPlease investigate either by logging in to {{host.name}} ({{host.ip}}) OR via [live processes](https://app.datadoghq.com/process?columns=host,process,user,cpu,memory,start&options=normalizeCPU,showArguments&sort=memory,DESC&tags=host%3A{{host.name}})",
