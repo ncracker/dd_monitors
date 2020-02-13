@@ -1,5 +1,4 @@
 {
-	"id": 15811680,
 	"name": "inodes over 90% used on {{host.name}} device {{device.name}}",
 	"type": "metric alert",
 	"query": "avg(last_5m):avg:system.fs.inodes.in_use{!device:/dev/loop0,!device:/dev/loop1} by {device,host} > 0.9",
