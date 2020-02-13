@@ -1,9 +1,12 @@
 {
 	"name": "High CPU on {{host.name}} - DD Example",
 	"type": "metric alert",
-	"query": "avg(last_15m):avg:system.cpu.idle{*} by {host} < 50",
+	"query": "avg(last_15m):avg:system.cpu.idle{*} by {host} < 25",
 	"message": "CPU Idle is low.\nPlease investigate either by logging in to {{host.name}} ({{host.ip}}) OR via [live processes](https://app.datadoghq.com/process?columns=host,process,user,cpu,memory,start&options=normalizeCPU,showArguments&sort=memory,DESC&tags=host%3A{{host.name}})",
-	"tags": [],
+	"tags": [
+		"system",
+		"example"
+	],
 	"options": {
 		"notify_audit": false,
 		"locked": false,
@@ -16,7 +19,7 @@
 		"no_data_timeframe": null,
 		"include_tags": false,
 		"thresholds": {
-			"critical": 50
+			"critical": 25
 		}
 	}
 }
