@@ -1,0 +1,26 @@
+{
+	"name": "AWS Budget ($ figure) will run low  in 7 days - DD Example",
+	"type": "query alert",
+	"query": "min(next_1w):forecast(avg:aws.billing.budget_limit{*} by {budget_name} - avg:aws.billing.actual_spend{*} by {budget_name}, 'seasonal', 1, interval='60m', seasonality='weekly') <= 1000",
+	"message": "AWS {{budget_name.name}} will be depleted below ${{threshold}} according to the allocated budget. \nCurrently at {{value}}",
+	"tags": [
+		"example",
+		"AWS"
+	],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": false,
+		"notify_no_data": false,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": null,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 1000,
+			"critical_recovery": 1700
+		}
+	}
+}
