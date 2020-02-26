@@ -1,5 +1,4 @@
 {
-	"id": 16001213,
 	"name": "AWS Budget (%) will run low  in 7 days - DD Example",
 	"type": "query alert",
 	"query": "max(next_1w):forecast(100 * avg:aws.billing.actual_spend{*} by {budget_name} / avg:aws.billing.budget_limit{*} by {budget_name}, 'linear', 1, interval='60m', history='3d', model='default') >= 95",
