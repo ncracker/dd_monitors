@@ -1,9 +1,11 @@
 {
-	"name": "Docker daemon service issue on {{host.name}}",
+	"name": "Docker daemon service issue on {{host.name}} - DD Example",
 	"type": "service check",
 	"query": "\"docker.service_up\".over(\"*\").by(\"host\").last(2).count_by_status()",
 	"message": "Please investigate docker daemon on {{host.name}} - {{host.ip}}\nUnable to run scheduled `docker ps` ",
-	"tags": [],
+	"tags": [
+		"example"
+	],
 	"options": {
 		"notify_audit": false,
 		"locked": false,
