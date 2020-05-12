@@ -1,0 +1,22 @@
+{
+	"name": "K8s - Deployment {{kube_deployment.name}} is not running the desired replicas - DD Example",
+	"type": "query alert",
+	"query": "avg(last_5m):avg:kubernetes_state.deployment.replicas_desired{*} by {kube_deployment} - avg:kubernetes_state.deployment.replicas_available{*} by {kube_deployment} >= 1",
+	"message": "Please verify in the [live container view](https://app.datadoghq.com/containers?tags=kube_deployment%3A{{kube_deployment.name}}) the right number of replicas are running for this deployment - currently {{value}} short of desired value. ",
+	"tags": [],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": false,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": null,
+		"include_tags": false,
+		"thresholds": {
+			"critical": 1
+		}
+	}
+}
