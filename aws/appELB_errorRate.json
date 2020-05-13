@@ -1,0 +1,27 @@
+{
+	"name": "High Application ELB errors for {{name.name}} - currently @ {{value}}",
+	"type": "query alert",
+	"query": "sum(last_5m):( ( avg:aws.applicationelb.httpcode_elb_4xx{*} by {aws_account,region,name}.as_rate() + avg:aws.applicationelb.httpcode_elb_5xx{*} by {aws_account,region,name}.as_rate() ) / avg:aws.applicationelb.request_count{*} by {aws_account,region,name}.as_rate() ) * 100 > 10",
+	"message": "Take a look in [AWS console](https://console.aws.amazon.com/ec2/v2/home?region={{region.name}}#LoadBalancers:type=application;search={{name.name}};sort=loadBalancerName)\n\n ",
+	"tags": [
+		"example"
+	],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": false,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": null,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 10,
+			"warning": 5,
+			"warning_recovery": 3,
+			"critical_recovery": 8
+		}
+	}
+}
