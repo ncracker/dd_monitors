@@ -1,0 +1,28 @@
+{
+	"name": "High disk utilization in Redshift - {{clusteridentifier.name}}. {{value}}% used ",
+	"type": "query alert",
+	"query": "avg(last_15m):avg:aws.redshift.percentage_disk_space_used{*} by {region,clusteridentifier} > 90",
+	"message": "Low disk space in Redshift - {{clusteridentifier.name}}.\nInvestigate with [AWS Console](https://console.aws.amazon.com/redshiftv2/home?region={{region.name}}#cluster-details?cluster={{clusteridentifier.name}})\n\n\n",
+	"tags": [
+		"redshift",
+		"example"
+	],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": true,
+		"renotify_interval": 0,
+		"escalation_message": "",
+		"no_data_timeframe": 30,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 90,
+			"warning": 80,
+			"warning_recovery": 70,
+			"critical_recovery": 75
+		}
+	}
+}
