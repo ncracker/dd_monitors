@@ -1,0 +1,25 @@
+{
+	"name": "High Message Age for {{queuename.name}} SQS queue - DD Example",
+	"type": "metric alert",
+	"query": "sum(last_5m):avg:aws.sqs.approximate_age_of_oldest_message{*} by {queuename,region} > 14400",
+	"message": "{{queuename.name}} SQS queue  - Messages are aging above {{threshold}} seconds.\nPlease investigate - see in [AWS console](https://console.aws.amazon.com/sqs/home?region=us-east-1#)",
+	"tags": [
+		"example"
+	],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": false,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": null,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 14400,
+			"warning": 10800
+		}
+	}
+}
