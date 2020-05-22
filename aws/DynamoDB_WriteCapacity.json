@@ -1,5 +1,5 @@
 {
-	"name": "DynamoDB - Approaching Insufficient Write Capacity for table {{tablename.name}} in {{region.name}} - DD Example",
+	"name": "DynamoDB - Approaching insufficient write capacity for table {{tablename.name}} in {{region.name}} - DD Example",
 	"type": "query alert",
 	"query": "avg(last_1h):100 * ( sum:aws.dynamodb.consumed_write_capacity_units{*} by {tablename,region}.rollup(avg, 300) / sum:aws.dynamodb.provisioned_write_capacity_units{*} by {tablename,region}.rollup(avg, 300) ) > 90",
 	"message": "Table {{tablename.name}} in {{region.name}} currently utilizing {{value}}% of total Write Capacity. Please investigate\n\n[Datadog DynamoDB dashboard](https://app.datadoghq.com/screen/integration/66/aws-dynamodb) \n\nSee within [AWS Console](https://us-west-2.console.aws.amazon.com/dynamodb/home?region={{region.name}}#tables:)",
