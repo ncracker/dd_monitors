@@ -1,0 +1,26 @@
+{
+	"name": "DynamoDB - Approaching insufficient read capacity for table {{tablename.name}} in {{region.name}} - DD Example",
+	"type": "query alert",
+	"query": "avg(last_1h):100 * ( sum:aws.dynamodb.consumed_read_capacity_units{*} by {tablename,region}.rollup(avg, 300) / sum:aws.dynamodb.provisioned_read_capacity_units{*} by {tablename,region}.rollup(avg, 300) ) > 90",
+	"message": "Table {{tablename.name}} in {{region.name}} currently utilizing {{value}}% of total Read Capacity. Please investigate\n\n[Datadog DynamoDB dashboard](https://app.datadoghq.com/screen/integration/66/aws-dynamodb) \n\nSee within [AWS Console](https://{{region.name}}.console.aws.amazon.com/dynamodb/home?region={{region.name}}#tables:)",
+	"tags": [
+		"aws",
+		"example"
+	],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": false,
+		"notify_no_data": false,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": null,
+		"include_tags": false,
+		"thresholds": {
+			"critical": 90,
+			"warning": 75
+		}
+	}
+}
