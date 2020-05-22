@@ -1,0 +1,25 @@
+{
+	"name": "DynamoDB Errors in table {{tablename.name}} - DD Example",
+	"type": "metric alert",
+	"query": "avg(last_5m):avg:aws.dynamodb.system_errors{*} by {tablename,operation,region} > 5",
+	"message": "Errors with {{operation.name}} operations on table {{tablename.name}} in {{region.name}} \n\nSee within [AWS Console](https://us-west-2.console.aws.amazon.com/dynamodb/home?region={{region.name}}#tables:)",
+	"tags": [
+		"aws",
+		"example"
+	],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": false,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": null,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 5
+		}
+	}
+}
