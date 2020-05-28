@@ -1,0 +1,27 @@
+{
+	"name": "Lambda High Error rate - {{functionname.name}} error rate at {{value}}% - DD Example",
+	"type": "query alert",
+	"query": "sum(last_30m):( avg:aws.lambda.errors{*} by {functionname,region}.as_count() / avg:aws.lambda.invocations{*} by {functionname,region}.as_count() ) * 100 > 25",
+	"message": "Function {{functionname.name}} has been executing with a high error rate of {{value}}% for the last 30 mins. \nPlease investigate - see the function in [Datadog Lambda](https://app.datadoghq.com/functions?search=%7B%22functionname%22%3A%7B%22type%22%3A%22included%22%2C%22list%22%3A%5B%22{{functionname.name}}%22%5D%7D%7D). \n\nFor changes to the function see [AWS console](https://{{region.name}}.console.aws.amazon.com/lambda/home?region={{region.name}}#/functions",
+	"tags": [
+		"aws",
+		"example"
+	],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": false,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": null,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 25,
+			"warning": 10
+		}
+	},
+	"restricted_roles": null
+}
