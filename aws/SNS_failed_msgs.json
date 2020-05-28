@@ -2,7 +2,7 @@
 	"name": "SNS messages failing to deliver for {{topicname.name}} - DD example",
 	"type": "query alert",
 	"query": "sum(last_15m):avg:aws.sns.number_of_notifications_failed{*} by {region,topicname,aws_account}.as_count() > 20",
-	"message": "SNS topic {{topicname.name}} in AWS account {{aws_account.name}} has high number of failed deliveries. Currently {{value}} undelivered messages in the topic.\nPlease take a closer look at the topic in [AWS console](https://us-east-2.console.aws.amazon.com/sns/v3/home?region={{region.name}}#/topics)",
+	"message": "SNS topic {{topicname.name}} in AWS account {{aws_account.name}} has high number of failed deliveries. Currently {{value}} undelivered messages in the topic.\nPlease take a closer look at the topic in [AWS console](https://{{region.name}}.console.aws.amazon.com/sns/v3/home?region={{region.name}}#/topics)",
 	"tags": [
 		"example",
 		"aws"
