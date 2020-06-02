@@ -1,0 +1,27 @@
+{
+	"name": "S3 bucket {{bucketname.name}} is erroring at a high rate - DD Example",
+	"type": "query alert",
+	"query": "sum(last_15m):avg:aws.s3.4xx_errors{*} by {aws_account,region,bucketname}.as_count() > 100",
+	"message": "Bucket {{bucketname.name}} in region {{region.name}} has thrown {{value}} 4xx errors over the last 15 mins. AWS account: {{aws_account.name}} \n\nSee [Datadog's S3 dashboard](https://app.datadoghq.com/screen/integration/101/aws-s3?tpl_var_bucketname={{bucketname.name}}) for a historical view on the bucket. \n\nView in [AWS Console](https://console.aws.amazon.com/s3/buckets/{{bucketname.name}}/?region={{region.name}}&tab=overview)\n\nConsider [enabling access logs for S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerLogs.html) if the problem persists.",
+	"tags": [
+		"example",
+		"aws"
+	],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": false,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": null,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 100,
+			"warning": 50
+		}
+	},
+	"restricted_roles": null
+}
