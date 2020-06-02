@@ -2,7 +2,7 @@
 	"name": "Rapidly growing S3 bucket {{bucketname.name}} - DD Example",
 	"type": "query alert",
 	"query": "change(max(last_1d),last_1d):avg:aws.s3.bucket_size_bytes{*} by {aws_account,region,bucketname} > 549755813888",
-	"message": "S3 bucket {{bucketname.name}} has grown over {{#is_alert}}512GBs{{/is_alert}} {{#is_warning}}256GBs{{/is_warning}} over the last 24 hours.\n\nSee [Datadog's S3 dashboard](https://app.datadoghq.com/screen/integration/101/aws-s3?tpl_var_bucketname={{bucketname.name}}) for a historical view on the bucket. \n\nView in [AWS Console](https://console.aws.amazon.com/s3/buckets/{{bucketname.name}}/?region={{region.name}}&tab=overview)",
+	"message": "S3 bucket {{bucketname.name}} has grown by over {{#is_alert}}512GBs{{/is_alert}} {{#is_warning}}256GBs{{/is_warning}} in the last 24 hours.\n\nSee [Datadog's S3 dashboard](https://app.datadoghq.com/screen/integration/101/aws-s3?tpl_var_bucketname={{bucketname.name}}) for a historical view on the bucket. \n\nView in [AWS Console](https://console.aws.amazon.com/s3/buckets/{{bucketname.name}}/?region={{region.name}}&tab=overview)",
 	"tags": [
 		"aws",
 		"example"
