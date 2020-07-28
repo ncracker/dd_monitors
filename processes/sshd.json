@@ -1,0 +1,25 @@
+{
+	"name": "SSH daemon not running on {{host.name}}",
+	"type": "process alert",
+	"query": "processes('sshd -D').by('host').rollup('count').last('5m') < 1",
+	"message": "OpenSSH server daemon down for over 5mins on {{host.name}} - {{host.ip}} \n\nPlease investigate",
+	"tags": [
+		"example",
+		"process"
+	],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": false,
+		"notify_no_data": false,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": null,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 1
+		}
+	}
+}
