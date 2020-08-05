@@ -1,23 +1,23 @@
 {
 	"name": "inodes over 90% used on {{host.name}} device {{device.name}}",
 	"type": "metric alert",
-	"query": "avg(last_5m):avg:system.fs.inodes.in_use{!device:/dev/loop0,!device:/dev/loop1} by {device,host} > 0.9",
+	"query": "avg(last_5m):avg:system.fs.inodes.in_use{!device:/dev/loop0,!device:/dev/loop1,!device:/dev/loop2,!device:/dev/loop4} by {device,host} > 0.9",
 	"message": "{{value}}% of inodes being used on device {{device.name}} for host {{host.name}} - {{host.ip}} \nPlease investigate",
 	"tags": [
 		"example",
 		"system"
 	],
 	"options": {
-		"timeout_h": 0,
-		"notify_no_data": false,
-		"no_data_timeframe": null,
 		"notify_audit": false,
-		"require_full_window": true,
-		"new_host_delay": 300,
-		"include_tags": false,
-		"escalation_message": "",
 		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": false,
 		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": null,
+		"include_tags": false,
 		"thresholds": {
 			"critical": 0.9
 		}
