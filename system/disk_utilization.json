@@ -1,7 +1,7 @@
 {
 	"name": "Disk utilization high on {{device.name}} on {{host.name}} - DD Example",
 	"type": "query alert",
-	"query": "avg(last_5m):avg:system.disk.in_use{!device:tmpfs,!device:devtmpfs} by {host,device} * 100 > 90",
+	"query": "avg(last_5m):avg:system.disk.in_use{!device:tmpfs,!device:devtmpfs,!device:/dev/loop0,!device:/dev/loop1,!device:/dev/loop2,!device:/dev/loop3,!device:/dev/loop4} by {host,device} * 100 > 90",
 	"message": "{{value}}% of space used on {{device.name}}\nPlease log in to {{host.name}} [{{host.ip}}] and investigate disk usage for mount point {{device.name}}",
 	"tags": [
 		"system",
