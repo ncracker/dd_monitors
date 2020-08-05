@@ -1,7 +1,7 @@
 {
 	"name": "inodes over 90% used on {{host.name}} device {{device.name}}",
 	"type": "metric alert",
-	"query": "avg(last_5m):avg:system.fs.inodes.in_use{!device:/dev/loop0,!device:/dev/loop1,!device:/dev/loop2,!device:/dev/loop4} by {device,host} > 0.9",
+	"query": "avg(last_5m):avg:system.fs.inodes.in_use{!device:/dev/loop0,!device:/dev/loop1,!device:/dev/loop2,!device:/dev/loop4,!device:/dev/loop3} by {device,host} > 0.9",
 	"message": "{{value}}% of inodes being used on device {{device.name}} for host {{host.name}} - {{host.ip}} \nPlease investigate",
 	"tags": [
 		"example",
