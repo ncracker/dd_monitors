@@ -1,9 +1,12 @@
 {
-	"name": "High CPU Load on {{host.name}}",
+	"name": "High CPU Load on {{host.name}} - DD Example",
 	"type": "metric alert",
 	"query": "avg(last_5m):avg:system.load.norm.5{*} by {host} > 1",
 	"message": "CPU Load 5 per core over {{threshold}}.\nPlease investigate either by logging in to {{host.name}} ({{host.ip}}) OR via [live processes](https://app.datadoghq.com/process?columns=host,process,user,cpu,memory,start&options=normalizeCPU,showArguments&sort=memory,DESC&tags=host%3A{{host.name}})",
-	"tags": [],
+	"tags": [
+		"system",
+		"example"
+	],
 	"options": {
 		"notify_audit": false,
 		"locked": false,
