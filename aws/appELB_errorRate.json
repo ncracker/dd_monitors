@@ -1,10 +1,11 @@
 {
 	"name": "High Application ELB errors for {{name.name}} - currently @ {{value}}",
 	"type": "query alert",
-	"query": "sum(last_5m):( ( avg:aws.applicationelb.httpcode_elb_4xx{*} by {aws_account,region,name}.as_rate() + avg:aws.applicationelb.httpcode_elb_5xx{*} by {aws_account,region,name}.as_rate() ) / avg:aws.applicationelb.request_count{*} by {aws_account,region,name}.as_rate() ) * 100 > 10",
-	"message": "Take a look in [AWS console](https://console.aws.amazon.com/ec2/v2/home?region={{region.name}}#LoadBalancers:type=application;search={{name.name}};sort=loadBalancerName)\n\n ",
+	"query": "sum(last_5m):avg:aws.applicationelb.httpcode_elb_4xx{*} by {aws_account,region,name}.as_count() + avg:aws.applicationelb.httpcode_elb_5xx{*} by {aws_account,region,name}.as_count() > 100",
+	"message": "{{value}} errors per second for {{loadbalancer.name}} in {{region.name}}\nAWS Account - {{aws_account.name}} \n\nPlease investigate\nSee in App ELB [Datadog Dashboard](https://app.datadoghq.com/screen/integration/81/aws-applicationelb?live=true&tpl_var_name={{loadbalancer.name}}&tpl_var_scope=%2A&tpl_var_targetgroup=%2A)\nSee in [AWS Console](https://console.aws.amazon.com/ec2/v2/home?region={{region.name}}#LoadBalancers:search={{loadbalancer.name}};sort=loadBalancerName)",
 	"tags": [
-		"example"
+		"example",
+		"aws"
 	],
 	"options": {
 		"notify_audit": false,
@@ -18,10 +19,10 @@
 		"no_data_timeframe": null,
 		"include_tags": true,
 		"thresholds": {
-			"critical": 10,
-			"warning": 5,
-			"warning_recovery": 3,
-			"critical_recovery": 8
+			"critical": 100,
+			"warning": 75,
+			"warning_recovery": 50,
+			"critical_recovery": 80
 		}
 	}
 }
