@@ -1,0 +1,50 @@
+{
+	"name": "Too many unauthorized actions in Cloudtrail logs ",
+	"type": "log alert",
+	"query": "logs(\"service:cloudtrail \\\"not authorized\\\"\").index(\"*\").rollup(\"count\").by(\"@userIdentity.session_name\").last(\"5m\") > 50",
+	"message": "Please investigate\n\n[See in Datadog logs](https://app.datadoghq.com/logs?cols=core_host%2Ccore_service&index=&live=true&messageDisplay=inline&query=service%3Acloudtrail+%22not+authorized%22&saved_view=110776&stream_sort=desc)",
+	"tags": [
+		"aws",
+		"example"
+	],
+	"options": {
+		"queryConfig": {
+			"timeRange": {
+				"from": 1596910935511,
+				"to": 1596914535511,
+				"live": true
+			},
+			"queryString": "service:cloudtrail \"not authorized\"",
+			"queryIsFailed": false,
+			"logset": {
+				"name": "*"
+			},
+			"track": "logs",
+			"indexes": []
+		},
+		"aggregation": {
+			"metric": "count",
+			"type": "count",
+			"groupBy": "log_userIdentity.session_name"
+		},
+		"thresholds": {
+			"comparison": ">",
+			"period": {
+				"value": "last_5m",
+				"seconds": 300
+			},
+			"critical": 50,
+			"timeAggregator": "avg"
+		},
+		"enable_logs_sample": true,
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"renotify_interval": 0,
+		"include_tags": true,
+		"new_host_delay": 300,
+		"notify_no_data": false,
+		"groupby_simple_monitor": false,
+		"no_data_timeframe": 2
+	}
+}
