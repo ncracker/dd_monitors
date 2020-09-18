@@ -1,0 +1,49 @@
+{
+	"name": "Lambda Function - OutOfMemory Errors",
+	"type": "log alert",
+	"query": "logs(\"@error.kind:OutOfMemory source:lambda\").index(\"*\").rollup(\"count\").by(\"functionname\").last(\"5m\") > 1",
+	"message": "Lambda function running out of memory. \nSee logs in [Datadog for details](https://app.datadoghq.com/logs?cols=host%2Cservice%2C%40duration%2Cimage_tag&from_ts=1593210791712&index=&live=true&messageDisplay=inline&query=%40error.kind%3AOutOfMemory%20status%3Aerror&stream_sort=desc&to_ts=1593211691712)\nConsider increasing the memory allocated to the function in [AWS Console](https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions) by going to the Configuration tab and opening the Advanced Settings.",
+	"tags": [
+		"aws",
+		"example"
+	],
+	"options": {
+		"queryConfig": {
+			"timeRange": {
+				"from": 1593212394930,
+				"to": 1593213294930,
+				"live": true
+			},
+			"queryString": "@error.kind:OutOfMemory source:lambda",
+			"queryIsFailed": false,
+			"logset": {
+				"name": "*"
+			},
+			"track": "logs",
+			"indexes": []
+		},
+		"aggregation": {
+			"metric": "count",
+			"type": "count",
+			"groupBy": "tag_functionname"
+		},
+		"thresholds": {
+			"comparison": ">",
+			"period": {
+				"value": "last_5m",
+				"seconds": 300
+			},
+			"critical": "1",
+			"timeAggregator": "avg"
+		},
+		"enable_logs_sample": true,
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"include_tags": true,
+		"new_host_delay": 300,
+		"notify_no_data": false,
+		"renotify_interval": 0,
+		"no_data_timeframe": 2
+	}
+}
