@@ -1,8 +1,9 @@
 {
-	"name": "SSH daemon not running on {{host.name}}",
+	"id": 24896895,
+	"name": "SSH daemon not running on {{host.name}} - DD Example",
 	"type": "process alert",
 	"query": "processes('sshd -D').by('host').rollup('count').last('5m') < 1",
-	"message": "OpenSSH server daemon down for over 5mins on {{host.name}} - {{host.ip}} \n\nPlease investigate",
+	"message": "OpenSSH server daemon down for over 5mins on {{host.name}} - {{host.ip}} \n\nPlease investigate by looking at the [logs for the sshd daemon](https://app.datadoghq.com/logs?cols=core_host%2Ccore_service&event&index=&messageDisplay=inline&query=sshd+host%3A{{host.name}}&stream_sort=desc) or by going to [Live Processes](https://app.datadoghq.com/process?selectedTopGraph=none&text=sshd&tags=host%3A{{host.name}})",
 	"tags": [
 		"example",
 		"process"
