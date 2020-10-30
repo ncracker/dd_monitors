@@ -1,8 +1,8 @@
 {
-	"name": "TLS certificate about to expire for {{endpoint.name}}",
+	"name": "TLS certificate about to expire for {{endpoint.name}} - DD Example",
 	"type": "metric alert",
-	"query": "min(last_10m):avg:http.ssl.days_left{*} by {endpoint,cloud_provider} < 90",
-	"message": "{{value}} days left on the TLS cert for {{endpoint.name}}. Service running in {{cloud_provider.name}}  \nPlease contact Certificate Authority regarding the renewal\n",
+	"query": "min(last_10m):avg:http.ssl.days_left{*} by {url} < 30",
+	"message": "{{value}} days left on the TLS cert for {{endpoint.name}}. \nPlease contact Certificate Authority regarding the renewal",
 	"tags": [],
 	"options": {
 		"notify_audit": false,
@@ -16,7 +16,8 @@
 		"no_data_timeframe": null,
 		"include_tags": false,
 		"thresholds": {
-			"critical": 90
+			"critical": 30,
+			"warning": 90
 		}
 	}
 }
