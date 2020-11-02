@@ -1,9 +1,13 @@
 {
+	"id": 24961458,
 	"name": "TLS certificate about to expire for {{endpoint.name}} - DD Example",
 	"type": "metric alert",
 	"query": "min(last_10m):avg:http.ssl.days_left{*} by {url} < 30",
 	"message": "{{value}} days left on the TLS cert for {{endpoint.name}}. \nPlease contact Certificate Authority regarding the renewal",
-	"tags": [],
+	"tags": [
+		"example",
+		"http"
+	],
 	"options": {
 		"notify_audit": false,
 		"locked": false,
