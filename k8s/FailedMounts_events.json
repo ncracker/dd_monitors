@@ -1,20 +1,25 @@
 {
+	"id": 25657472,
 	"name": "K8s Deployments w/ Failed Mounts - pod {{pod_name.name}} - DD Example",
 	"type": "event alert",
-	"query": "events('priority:all sources:kubernetes FailedMount').by('pod_name').rollup('count').last('5m') > 1",
-	"message": "{{pod_name.name}} has failed mounts\n\n{{event.text}} \n\n[See in Datadog Events](https://app.datadoghq.com/event/stream?tags_execution=and&show_private=true&per_page=30&query=api-proxy&aggregate_up=true&use_date_happened=false&display_timeline=true&priority=normal&live=true&is_zoomed=false&status=all&is_auto=false&incident=true&only_discussed=false&no_user=false&page=0&bucket_size=60000)\n",
+	"query": "events('priority:all sources:kubernetes FailedMount').by('pod_name').rollup('count').last('5m') >= 1",
+	"message": "{{pod_name.name}} has failed mounts\n\n{{event.text}} \n\n[See in Datadog Events](https://app.datadoghq.com/event/stream?tags_execution=and&show_private=true&per_page=30&query=api-proxy&aggregate_up=true&use_date_happened=false&display_timeline=true&priority=normal&live=true&is_zoomed=false&status=all&is_auto=false&incident=true&only_discussed=false&no_user=false&page=0&bucket_size=60000)",
 	"tags": [
 		"type:kubernetes",
 		"example"
 	],
 	"options": {
-		"renotify_interval": 0,
+		"notify_audit": false,
+		"locked": false,
 		"timeout_h": 0,
+		"silenced": {},
+		"include_tags": true,
 		"thresholds": {
 			"critical": 1
 		},
+		"new_host_delay": 300,
 		"notify_no_data": false,
-		"no_data_timeframe": 2,
-		"notify_audit": false
+		"renotify_interval": 0,
+		"no_data_timeframe": 2
 	}
 }
