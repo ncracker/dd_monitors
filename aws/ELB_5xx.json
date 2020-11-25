@@ -4,7 +4,6 @@
 	"query": "sum(last_5m):avg:aws.elb.httpcode_elb_5xx{*} by {host,aws_account}.as_count() > 20",
 	"message": "ELB {{host.name}} in {{host.region}} currently erroring at {{value}} req/sec. Please investigate\n\nSee in Datadog [ELB Dashboard](https://app.datadoghq.com/screen/integration/80/aws-elb?tpl_var_name={{host.name}})\n\nSee in [AWS Console](https://{{host.region}}.console.aws.amazon.com/ec2/v2/home?region={{host.region}}#LoadBalancers:sort=desc:dnsName)",
 	"tags": [
-		"datadog_demo_keep:true",
 		"aws",
 		"example"
 	],
