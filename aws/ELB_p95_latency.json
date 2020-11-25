@@ -1,0 +1,26 @@
+{
+	"name": "High ELB Latency for {{host.name}} - DD Example",
+	"type": "metric alert",
+	"query": "avg(last_5m):avg:aws.elb.latency.p95{*} by {host,aws_account} > 30",
+	"message": "p95 latency for ELB {{host.name}} in {{host.region}} currently at {{value}} secs. Please investigate\n\nSee in Datadog [ELB Dashboard](https://app.datadoghq.com/screen/integration/80/aws-elb?tpl_var_name={{host.name}})\n\nSee in [AWS Console](https://{{host.region}}.console.aws.amazon.com/ec2/v2/home?region={{host.region}}#LoadBalancers:sort=desc:dnsName)",
+	"tags": [
+		"aws",
+		"example"
+	],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": false,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": null,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 30,
+			"warning": 20
+		}
+	}
+}
