@@ -1,8 +1,8 @@
 {
 	"name": "High number of ELB 5xx for {{host.name}} - DD Example",
 	"type": "query alert",
-	"query": "sum(last_5m):avg:aws.elb.httpcode_elb_5xx{*} by {host}.as_count() > 50",
-	"message": "ELB {{host.name}} in {{host.region}} currently erroring at {{value}} req/sec. Please investigate\n\nSee in Datadog [ELB Dashboard](https://app.datadoghq.com/screen/integration/80/aws-elb?tpl_var_name={{host.name}})\n\nSee in [AWS Console](https://{{host.region}}.console.aws.amazon.com/ec2/v2/home?region={{host.region}}#LoadBalancers:sort=desc:dnsName)\n",
+	"query": "sum(last_5m):avg:aws.elb.httpcode_elb_5xx{*} by {host,aws_account}.as_count() > 20",
+	"message": "ELB {{host.name}} in {{host.region}} currently erroring at {{value}} req/sec. Please investigate\n\nSee in Datadog [ELB Dashboard](https://app.datadoghq.com/screen/integration/80/aws-elb?tpl_var_name={{host.name}})\n\nSee in [AWS Console](https://{{host.region}}.console.aws.amazon.com/ec2/v2/home?region={{host.region}}#LoadBalancers:sort=desc:dnsName)",
 	"tags": [
 		"datadog_demo_keep:true",
 		"aws",
@@ -20,8 +20,7 @@
 		"no_data_timeframe": null,
 		"include_tags": true,
 		"thresholds": {
-			"critical": 50
+			"critical": 20
 		}
-	},
-	"restricted_roles": null
+	}
 }
