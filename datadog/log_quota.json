@@ -1,0 +1,20 @@
+{
+	"name": "Datadog indexing logs quota has been exceeded - DD Example",
+	"type": "event alert",
+	"query": "events('priority:all [Log Management] Daily quota reached').rollup('count').last('1d') > 0",
+	"message": "Please examine [index quotas](https://app.datadoghq.com/logs/pipelines/indexes) and make the necessary adjustments to ensure you don't miss important log messages.\nYou can either increase the quota or exclude a subset of logs from indexing (typically done for less important or non-actionable logs that aren't used in dashboards or monitors).\n\nFor more information [refer to the logs quota documentation](https://docs.datadoghq.com/logs/indexes/#set-daily-quota)\nFor help with indexing filters see [here](https://docs.datadoghq.com/logs/indexes/#indexes-filters)",
+	"tags": [
+		"logs",
+		"example"
+	],
+	"options": {
+		"renotify_interval": 0,
+		"timeout_h": 0,
+		"thresholds": {
+			"critical": 0
+		},
+		"notify_no_data": false,
+		"no_data_timeframe": 2880,
+		"notify_audit": false
+	}
+}
