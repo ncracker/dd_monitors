@@ -1,0 +1,28 @@
+{
+	"id": 32632224,
+	"name": "Low cache hit rate for {{cacheclusterid.name}} in {{region.name}} - DD Example",
+	"type": "query alert",
+	"query": "sum(last_5m):100 * avg:aws.elasticache.cache_hits{*} by {cacheclusterid,region}.as_count() / ( avg:aws.elasticache.cache_hits{*} by {cacheclusterid,region}.as_count() + avg:aws.elasticache.cache_misses{*} by {cacheclusterid,region}.as_count() ) < 50",
+	"message": "Please investigate low cache hit rate ({{value}}%) for {{cacheclusterid.name}}.\n\nSee in [Datadog dashboard](https://support-admin.us1.prod.dog/dashboard/jbv-q4a-xiy?live=true&tpl_var_cluster_id={{cacheclusterid.name}})\nSee in [AWS Console](https://console.aws.amazon.com/elasticache/home?region={{region.name}}#redis:)  ",
+	"tags": [
+		"aws",
+		"example"
+	],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": false,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": null,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 50,
+			"warning": 75
+		}
+	},
+	"priority": null
+}
