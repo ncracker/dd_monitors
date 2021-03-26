@@ -1,0 +1,60 @@
+{
+	"id": 32853116,
+	"name": "Datadog-forwarder not allowed to collect logs - DD Example",
+	"type": "log alert",
+	"query": "logs(\"datadog 403 status:warn @http.status_code:403 datadog-forwarder @http.method:GET\").index(\"*\").rollup(\"count\").last(\"5m\") > 5",
+	"message": "Datadog forwarder function not permitted access to collect logs.\n\nPlease examine the permissions granted.\n\n[See documentation](https://docs.datadoghq.com/serverless/forwarder/)\n[See examples](https://app.datadoghq.com/logs?cols=host%2Cservice&from_ts=1616718740938&index=&live=true&messageDisplay=inline&query=datadog%20403%20status%3Awarn%20%40http.status_code%3A403%20%22datadog-forwarder%22%20%40http.method%3AGET&saved_view=289623&stream_sort=desc&to_ts=1616733140938&viz=)",
+	"tags": [
+		"aws",
+		"logs"
+	],
+	"options": {
+		"queryConfig": {
+			"timeRange": {
+				"from": 1616718678527,
+				"to": 1616733078527,
+				"live": true
+			},
+			"queryString": "datadog 403 status:warn @http.status_code:403 datadog-forwarder @http.method:GET",
+			"queryIsFailed": false,
+			"logset": {
+				"name": "*"
+			},
+			"track": "logs",
+			"indexes": [
+				"*"
+			]
+		},
+		"aggregation": {
+			"metric": "count",
+			"type": "count",
+			"groupBy": ""
+		},
+		"thresholds": {
+			"comparison": ">",
+			"period": {
+				"name": "5 minute average",
+				"value": "last_5m",
+				"text": "5 minutes",
+				"no_data_timeframe": 10,
+				"seconds": 300,
+				"digit": 5,
+				"unit": "minutes",
+				"tense": "last"
+			},
+			"critical": "5",
+			"timeAggregator": "avg"
+		},
+		"enable_logs_sample": true,
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"renotify_interval": 0,
+		"include_tags": true,
+		"new_host_delay": 300,
+		"notify_no_data": false,
+		"groupby_simple_monitor": false,
+		"no_data_timeframe": 2
+	},
+	"priority": null
+}
