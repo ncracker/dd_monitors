@@ -2,7 +2,7 @@
 	"name": "DocumentDB High memory consumption for {{dbinstanceidentifier.name}} in {{region.name}} - DD Example",
 	"type": "metric alert",
 	"query": "avg(last_5m):avg:aws.docdb.freeable_memory{dbinstanceclass:db.t3.medium} by {dbinstanceidentifier,region} < 1073741824",
-	"message": "See in [Datadog](https://app.datadoghq.com/screen/integration/266/aws-documentdb)\n\nSee in [AWS Console](https://console.aws.amazon.com/docdb/home?region={{region.name}}#clusters)  \n\n\n[DocumentDB Monitoring best practices](https://docs.aws.amazon.com/documentdb/latest/developerguide/best_practices.html)\nAvailable memory would vary based on instance type. See [here for details](https://aws.amazon.com/ec2/instance-types/)",
+	"message": "Note: When performing a high rate of concurrent batchInsert and/or batchUpdate operations, and the amount of aws.docdb.freeable_memory (FreeableMemory in CloudWatch Metric) goes to zero on your primary instance, you can either reduce the concurrency of the batch insert or update workload or, if concurrency of the workload cannot be reduced, increase the instance size to increase the amount of aws.docdb.freeable_memory/FreeableMemory.\n\nSee in [Datadog](https://app.datadoghq.com/screen/integration/266/aws-documentdb)\nSee in [AWS Console](https://console.aws.amazon.com/docdb/home?region={{region.name}}#clusters)  \n\n\n[DocumentDB Monitoring best practices](https://docs.aws.amazon.com/documentdb/latest/developerguide/best_practices.html)\nAvailable memory would vary based on instance type. See [here for details](https://aws.amazon.com/ec2/instance-types/)",
 	"tags": [
 		"aws",
 		"example"
