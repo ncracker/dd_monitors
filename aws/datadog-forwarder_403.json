@@ -1,5 +1,4 @@
 {
-	"id": 32853116,
 	"name": "Datadog-forwarder not allowed to collect logs - DD Example",
 	"type": "log alert",
 	"query": "logs(\"datadog 403 status:warn @http.status_code:403 datadog-forwarder @http.method:GET\").index(\"*\").rollup(\"count\").last(\"5m\") > 5",
