@@ -1,0 +1,27 @@
+{
+	"name": "DocumentDB {{dbinstanceidentifier.name}} in {{region.name}} is swapping - DD Example",
+	"type": "metric alert",
+	"query": "avg(last_15m):avg:aws.docdb.swap_usage{*} by {dbinstanceidentifier,region} > 50000000",
+	"message": "This metric should remain at or near zero. If your swap usage is significant, consider scaling up your instances.\n\nSee in [Datadog](https://app.datadoghq.com/screen/integration/266/aws-documentdb)\nSee in [AWS Console](https://console.aws.amazon.com/docdb/home?region={{region.name}}#clusters)  \n\n\n[DocumentDB Monitoring best practices](https://docs.aws.amazon.com/documentdb/latest/developerguide/best_practices.html)",
+	"tags": [
+		"aws",
+		"example"
+	],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": false,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": null,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 50000000,
+			"warning": 0
+		}
+	},
+	"priority": null
+}
