@@ -1,5 +1,5 @@
 {
-	"name": "DocumentDB memory consumption - DD Example",
+	"name": "DocumentDB High memory consumption for {{dbinstanceidentifier.name}} in {{region.name}} - DD Example",
 	"type": "metric alert",
 	"query": "avg(last_5m):avg:aws.docdb.freeable_memory{environment:prd,dbinstanceclass:db.t3.medium} by {dbinstanceidentifier,region} < 1073741824",
 	"message": "See in [Datadog](https://support-admin.us1.prod.dog/dashboard/9ec-j49-9un/aws-documentdb)\n\nSee in [AWS Console](https://console.aws.amazon.com/docdb/home?region={{region.name}}#clusters)  \n\n\n[DocumentDB Monitoring best practices](https://docs.aws.amazon.com/documentdb/latest/developerguide/best_practices.html)\nAvailable memory would vary based on instance type. See [here for details](https://aws.amazon.com/ec2/instance-types/)",
