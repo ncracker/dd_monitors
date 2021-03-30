@@ -1,0 +1,27 @@
+{
+	"name": "DocumentDB High CPU utilization for {{dbinstanceidentifier.name}} in {{region.name}} - DD Example",
+	"type": "metric alert",
+	"query": "avg(last_5m):avg:aws.docdb.cpuutilization{environment:prd,dbinstanceclass:db.t3.medium} by {dbinstanceidentifier,region} > 80",
+	"message": "High values for CPU consumption might be appropriate, provided that they are in keeping with your goals for your application (like throughput or concurrency) and are expected. If your CPU consumption is consistently over 80 percent, consider scaling up your instances.\n\nSee in [Datadog](https://support-admin.us1.prod.dog/dashboard/9ec-j49-9un/aws-documentdb)\nSee in [AWS Console](https://console.aws.amazon.com/docdb/home?region={{region.name}}#clusters)  \n\n[DocumentDB Monitoring best practices](https://docs.aws.amazon.com/documentdb/latest/developerguide/best_practices.html)",
+	"tags": [
+		"aws",
+		"example"
+	],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": true,
+		"notify_no_data": false,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": null,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 80,
+			"warning": 70
+		}
+	},
+	"priority": null
+}
