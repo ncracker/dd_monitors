@@ -1,0 +1,27 @@
+{
+	"name": "OOM Detected on cluster {{kube_cluster_name}} for deployment {{kube_deployment.name}} - DD Example",
+	"type": "query alert",
+	"query": "max(last_5m):sum:kubernetes.containers.state.terminated{reason:oomkilled} by {kube_cluster_name,kube_deployment} >= 1",
+	"message": "{{#is_alert}}\nSee in [POD Overview](https://app.datadoghq.com/screen/integration/30322/kubernetes-pods-overview?fullscreen_widget=8&live=false&tile_size=m&fullscreen_section=overview&tpl_var_deployment={{kube_deployment.name}})\n\nSee in [Live Containers](https://app.datadoghq.com/orchestration/overview/deployment?cols=name%2Ccurrent_desired_replicas%2Cupdated_replicas%2Cavailable_replicas%2Cage%2Clabels&paused=false&tags=kube_deployment%3A{{kube_deployment.name}})\n{{/is_alert}} \n\n\n{{#is_alert_recovery}}\nEverything is back to normal\n{{/is_alert_recovery}} \n",
+	"tags": [
+		"k8s",
+		"example"
+	],
+	"options": {
+		"notify_audit": false,
+		"locked": false,
+		"timeout_h": 0,
+		"new_host_delay": 300,
+		"require_full_window": false,
+		"notify_no_data": false,
+		"renotify_interval": "0",
+		"escalation_message": "",
+		"no_data_timeframe": null,
+		"include_tags": true,
+		"thresholds": {
+			"critical": 1
+		}
+	},
+	"priority": null,
+	"restricted_roles": null
+}
