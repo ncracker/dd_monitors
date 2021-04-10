@@ -1,5 +1,4 @@
 {
-	"id": 24896895,
 	"name": "SSH daemon not running on {{host.name}} - DD Example",
 	"type": "process alert",
 	"query": "processes('sshd -D').by('host').rollup('count').last('5m') < 1",
