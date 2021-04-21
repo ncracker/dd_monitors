@@ -1,0 +1,49 @@
+{
+	"name": "Lambda {{[@lambda.arn].name}} consuming over 95% of allocated memory - DD Example ",
+	"type": "log alert",
+	"query": "logs(\"@lambda.memory_pct:>95 regi\").index(\"*\").rollup(\"avg\", \"@lambda.memory_pct\").by(\"@lambda.arn\").last(\"15m\") > 4",
+	"message": "Function {{[@lambda.arn].name}} might require more memory. \nPlease investigate - see the function in [Datadog Serverless](https://app.datadoghq.com/functions)\nor by examining the [logs](https://app.datadoghq.com/logs?agg_m=%40lambda.memory_pct&agg_q=%40lambda.arn&agg_t=avg&index=&query=%40lambda.memory_pct%3A%3E95&sort_m=&sort_t=&top_n=10&top_o=top&viz=stream)\n\nFor changes to the function see [AWS console](https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions)\n\nSee this guide for help with [Choosing the Optimal Memory Size](https://aws.amazon.com/premiumsupport/knowledge-center/lambda-troubleshoot-throttling/)",
+	"tags": [
+		"aws",
+		"example"
+	],
+	"options": {
+		"queryConfig": {
+			"timeRange": {
+				"from": 1618982138272,
+				"to": 1619027138272,
+				"live": true
+			},
+			"queryString": "@lambda.memory_pct:>95 regi",
+			"queryIsFailed": false,
+			"logset": null,
+			"track": "logs",
+			"indexes": []
+		},
+		"aggregation": {
+			"metric": "log_lambda.memory_pct",
+			"type": "avg",
+			"groupBy": [
+				"log_lambda.arn"
+			]
+		},
+		"thresholds": {
+			"comparison": ">",
+			"period": {
+				"name": "15 minute average",
+				"value": "last_15m",
+				"text": "15 minutes",
+				"no_data_timeframe": 30,
+				"seconds": 900,
+				"digit": 15,
+				"unit": "minutes",
+				"tense": "last"
+			},
+			"critical": 4,
+			"timeAggregator": "avg",
+			"periodIsChanged": true
+		},
+		"enable_logs_sample": true,
+		"notify_audit": false
+	}
+}
